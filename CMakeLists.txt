@@ -1,5 +1,7 @@
 project(QuanergyClient)
 cmake_minimum_required(VERSION 2.8)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #  This should match what's in include/quanergy/client/version.h
 set(QUANERGY_CLIENT_VERSION "4.1.2")
@@ -149,7 +151,7 @@ if (PACKAGE_FOR_DEV)
 
 else()
 
-  set_target_properties(quanergy_client 
+  set_target_properties(quanergy_client
     PROPERTIES SOVERSION ${QUANERGY_CLIENT_VERSION})
 
   if(WIN32)
@@ -249,6 +251,6 @@ if (PCL_VISUALIZATION_FOUND)
 endif()
 
 add_executable(dynamic_connection apps/dynamic_connection.cpp)
-target_link_libraries(dynamic_connection quanergy_client ${PCL_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(dynamic_connection quanergy_client ${PCL_LIBRARIES} ${Boost_LIBRARIES} -lpthread)
 
 message("PCL_LIBRARIES: ${PCL_LIBRARIES}")
